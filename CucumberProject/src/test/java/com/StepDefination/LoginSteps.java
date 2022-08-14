@@ -1,9 +1,12 @@
 package com.StepDefination;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -23,11 +26,19 @@ public class LoginSteps {
 		driver.get("https://opensource-demo.orangehrmlive.com/index.php/auth/validateCredentials");
 	}
 
-	@When("User Enters Username and Password")
-	public void user_enters_username_and_password() {
+/*	@When("^user enters \"(.*)\" and \"(.*)\"$")
+	@When("^user enters (.*) and (.*)$")
+	
+	public void user_enters_username_and_password(String uname, String pswd) {
 		System.out.println("Step2: User enters Username and Password");
-		driver.findElement(By.id("txtUsername")).sendKeys("admin");
-		driver.findElement(By.id("txtPassword")).sendKeys("admin123");
+		driver.findElement(By.id("txtUsername")).sendKeys(uname);
+		driver.findElement(By.id("txtPassword")).sendKeys(pswd);*/
+		@When("user enters credentials using DataTable")
+		public void user_enters_credentials_using_DataTable(DataTable dataTable) {
+			System.out.println("Step2: User enters credentials using DataTable");
+			List<List<String>> data=dataTable.cells();
+			driver.findElement(By.id("txtUsername")).sendKeys(data.get(0).get(0));
+			driver.findElement(By.id("txtPassword")).sendKeys(data.get(0).get(1));	
 	}
 
 	@And("Click On Login button")

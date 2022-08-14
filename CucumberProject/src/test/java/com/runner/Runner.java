@@ -7,10 +7,10 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/Features", glue = {
-		"com.StepDefination" }, monochrome = false, plugin = { "html:\\CucumberProject\\Reports\\HTMLReports" },
-dryRun=false
+		"com.StepDefination" }, monochrome = false, plugin = { "html:\\CucumberProject\\Reports\\HTMLReports" }
+// dryRun = false
 //strict=true
-		)
+)
 public class Runner {
 
 }
